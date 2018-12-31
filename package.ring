@@ -25,6 +25,7 @@ aPackageInfo = [
 		"README.md"
 	],
 	:ringfolderfiles = 	[
+		"bin/guilib.ring",
 		"extensions/ringqt/guilib/guilib.ring",
 		"extensions/ringqt/guilib/modernlib/appclass.ring",
 		"extensions/ringqt/guilib/modernlib/comboboxclass.ring",
