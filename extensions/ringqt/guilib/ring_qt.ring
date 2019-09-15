@@ -87,6 +87,18 @@ Class QObject
 	Func setProperty_5 P1,P2
 		return QObject_setProperty_5(pObject,P1,P2)
 
+	Func setProperty_int P1,P2
+		return QObject_setProperty_int(pObject,P1,P2)
+
+	Func setProperty_float P1,P2
+		return QObject_setProperty_float(pObject,P1,P2)
+
+	Func setProperty_double P1,P2
+		return QObject_setProperty_double(pObject,P1,P2)
+
+	Func setProperty_string P1,P2
+		return QObject_setProperty_string(pObject,P1,P2)
+
 	Func signalsBlocked 
 		return QObject_signalsBlocked(pObject)
 
@@ -3042,6 +3054,48 @@ Class QString2
 	Func right P1
 		return QString2_right(pObject,P1)
 
+	Func compare P1,P2
+		return QString2_compare(pObject,P1,P2)
+
+	Func contains P1,P2
+		return QString2_contains(pObject,P1,P2)
+
+	Func indexOf P1,P2,P3
+		return QString2_indexOf(pObject,P1,P2,P3)
+
+	Func insert P1,P2
+		return QString2_insert(pObject,P1,P2)
+
+	Func isRightToLeft 
+		return QString2_isRightToLeft(pObject)
+
+	Func repeated P1
+		return QString2_repeated(pObject,P1)
+
+	Func replace P1,P2,P3
+		return QString2_replace(pObject,P1,P2,P3)
+
+	Func startsWith P1,P2
+		return QString2_startsWith(pObject,P1,P2)
+
+	Func endsWith P1,P2
+		return QString2_endsWith(pObject,P1,P2)
+
+	Func toHtmlEscaped 
+		return QString2_toHtmlEscaped(pObject)
+
+	Func clear 
+		return QString2_clear(pObject)
+
+	Func isNull 
+		return QString2_isNull(pObject)
+
+	Func resize P1
+		return QString2_resize(pObject,P1)
+
+	Func fill P1,P2
+		return QString2_fill(pObject,GetObjectPointerFromRingObject(P1),P2)
+
 Class QProcess from QIODevice
 
 	pObject
@@ -4561,7 +4615,9 @@ Class QPixmap
 		return pTempObj
 
 	Func trueMatrix P1,P2,P3
-		return QPixmap_trueMatrix(pObject,GetObjectPointerFromRingObject(P1),P2,P3)
+		pTempObj = new QTransform
+		pTempObj.pObject = QPixmap_trueMatrix(pObject,GetObjectPointerFromRingObject(P1),P2,P3)
+		return pTempObj
 
 	Func trueMatrix_2 P1,P2,P3
 		return QPixmap_trueMatrix_2(pObject,GetObjectPointerFromRingObject(P1),P2,P3)
@@ -4623,7 +4679,9 @@ Class QPainter
 		return pTempObj
 
 	Func combinedTransform 
-		return QPainter_combinedTransform(pObject)
+		pTempObj = new QTransform
+		pTempObj.pObject = QPainter_combinedTransform(pObject)
+		return pTempObj
 
 	Func compositionMode 
 		return QPainter_compositionMode(pObject)
@@ -4634,7 +4692,9 @@ Class QPainter
 		return pTempObj
 
 	Func deviceTransform 
-		return QPainter_deviceTransform(pObject)
+		pTempObj = new QTransform
+		pTempObj.pObject = QPainter_deviceTransform(pObject)
+		return pTempObj
 
 	Func drawArc P1,P2,P3,P4,P5,P6
 		return QPainter_drawArc(pObject,P1,P2,P3,P4,P5,P6)
@@ -4824,7 +4884,9 @@ Class QPainter
 		return QPainter_testRenderHint(pObject,P1)
 
 	Func transform 
-		return QPainter_transform(pObject)
+		pTempObj = new QTransform
+		pTempObj.pObject = QPainter_transform(pObject)
+		return pTempObj
 
 	Func translate P1,P2
 		return QPainter_translate(pObject,P1,P2)
@@ -4846,7 +4908,9 @@ Class QPainter
 		return QPainter_worldMatrixEnabled(pObject)
 
 	Func worldTransform 
-		return QPainter_worldTransform(pObject)
+		pTempObj = new QTransform
+		pTempObj.pObject = QPainter_worldTransform(pObject)
+		return pTempObj
 
 	Func drawPolygon P1,P2
 		return QPainter_drawPolygon(pObject,GetObjectPointerFromRingObject(P1),P2)
@@ -5546,7 +5610,9 @@ Class QBrush
 		return pTempObj
 
 	Func transform 
-		return QBrush_transform(pObject)
+		pTempObj = new QTransform
+		pTempObj.pObject = QBrush_transform(pObject)
+		return pTempObj
 
 Class QTextCursor
 
@@ -6983,7 +7049,9 @@ Class QScreen
 		return pTempObj
 
 	Func transformBetween P1,P2,P3
-		return QScreen_transformBetween(pObject,GetObjectPointerFromRingObject(P1),GetObjectPointerFromRingObject(P2),GetObjectPointerFromRingObject(P3))
+		pTempObj = new QTransform
+		pTempObj.pObject = QScreen_transformBetween(pObject,GetObjectPointerFromRingObject(P1),GetObjectPointerFromRingObject(P2),GetObjectPointerFromRingObject(P3))
+		return pTempObj
 
 Class QWindow from QObject
 
@@ -8256,10 +8324,14 @@ Class QMatrix4x4
 		return QMatrix4x4_toAffine(pObject)
 
 	Func toTransform 
-		return QMatrix4x4_toTransform(pObject)
+		pTempObj = new QTransform
+		pTempObj.pObject = QMatrix4x4_toTransform(pObject)
+		return pTempObj
 
 	Func toTransform_2 P1
-		return QMatrix4x4_toTransform_2(pObject,P1)
+		pTempObj = new QTransform
+		pTempObj.pObject = QMatrix4x4_toTransform_2(pObject,P1)
+		return pTempObj
 
 	Func translate P1
 		return QMatrix4x4_translate(pObject,GetObjectPointerFromRingObject(P1))
@@ -11794,6 +11866,11 @@ Class QWidget from QObject
 
 	Func setTabOrder P1,P2
 		return QWidget_setTabOrder(pObject,GetObjectPointerFromRingObject(P1),GetObjectPointerFromRingObject(P2))
+
+	Func createWindowContainer P1,P2,P3
+		pTempObj = new QWidget
+		pTempObj.pObject = QWidget_createWindowContainer(pObject,GetObjectPointerFromRingObject(P1),GetObjectPointerFromRingObject(P2),P3)
+		return pTempObj
 
 Class QLabel from QWidget
 
@@ -19834,6 +19911,279 @@ Class QTabBar from QWidget
 	Func gettabMovedEvent 
 		return QTabBar_gettabMovedEvent(pObject)
 
+Class QGraphicsView from QAbstractScrollArea
+
+	pObject
+
+	Func init P1
+		pObject = QGraphicsView_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QGraphicsView_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func alignment 
+		return QGraphicsView_alignment(pObject)
+
+	Func backgroundBrush 
+		pTempObj = new QBrush
+		pTempObj.pObject = QGraphicsView_backgroundBrush(pObject)
+		return pTempObj
+
+	Func cacheMode 
+		return QGraphicsView_cacheMode(pObject)
+
+	Func centerOn P1
+		return QGraphicsView_centerOn(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func centerOn_2 P1,P2
+		return QGraphicsView_centerOn_2(pObject,P1,P2)
+
+	Func centerOn_3 P1
+		return QGraphicsView_centerOn_3(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func dragMode 
+		return QGraphicsView_dragMode(pObject)
+
+	Func ensureVisible P1,P2,P3
+		return QGraphicsView_ensureVisible(pObject,GetObjectPointerFromRingObject(P1),P2,P3)
+
+	Func ensureVisible_2 P1,P2,P3,P4,P5,P6
+		return QGraphicsView_ensureVisible_2(pObject,P1,P2,P3,P4,P5,P6)
+
+	Func ensureVisible_3 P1,P2,P3
+		return QGraphicsView_ensureVisible_3(pObject,GetObjectPointerFromRingObject(P1),P2,P3)
+
+	Func fitInView P1,P2
+		return QGraphicsView_fitInView(pObject,GetObjectPointerFromRingObject(P1),P2)
+
+	Func fitInView_2 P1,P2,P3,P4,P5
+		return QGraphicsView_fitInView_2(pObject,P1,P2,P3,P4,P5)
+
+	Func fitInView_3 P1,P2
+		return QGraphicsView_fitInView_3(pObject,GetObjectPointerFromRingObject(P1),P2)
+
+	Func foregroundBrush 
+		pTempObj = new QBrush
+		pTempObj.pObject = QGraphicsView_foregroundBrush(pObject)
+		return pTempObj
+
+	Func isInteractive 
+		return QGraphicsView_isInteractive(pObject)
+
+	Func isTransformed 
+		return QGraphicsView_isTransformed(pObject)
+
+	Func itemAt P1
+		return QGraphicsView_itemAt(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func itemAt_2 P1,P2
+		return QGraphicsView_itemAt_2(pObject,P1,P2)
+
+	Func items 
+		return QGraphicsView_items(pObject)
+
+	Func items_2 P1
+		return QGraphicsView_items_2(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func items_3 P1,P2
+		return QGraphicsView_items_3(pObject,P1,P2)
+
+	Func items_4 P1,P2
+		return QGraphicsView_items_4(pObject,GetObjectPointerFromRingObject(P1),GetObjectPointerFromRingObject(P2))
+
+	Func items_5 P1,P2,P3,P4,P5
+		return QGraphicsView_items_5(pObject,P1,P2,P3,P4,GetObjectPointerFromRingObject(P5))
+
+	Func items_6 P1,P2
+		return QGraphicsView_items_6(pObject,GetObjectPointerFromRingObject(P1),GetObjectPointerFromRingObject(P2))
+
+	Func items_7 P1,P2
+		return QGraphicsView_items_7(pObject,GetObjectPointerFromRingObject(P1),GetObjectPointerFromRingObject(P2))
+
+	Func mapFromScene P1
+		pTempObj = new QPoint
+		pTempObj.pObject = QGraphicsView_mapFromScene(pObject,GetObjectPointerFromRingObject(P1))
+		return pTempObj
+
+	Func mapFromScene_2 P1
+		return QGraphicsView_mapFromScene_2(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func mapFromScene_3 P1
+		return QGraphicsView_mapFromScene_3(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func mapFromScene_4 P1
+		pTempObj = new QPainterPath
+		pTempObj.pObject = QGraphicsView_mapFromScene_4(pObject,GetObjectPointerFromRingObject(P1))
+		return pTempObj
+
+	Func mapFromScene_5 P1,P2
+		pTempObj = new QPoint
+		pTempObj.pObject = QGraphicsView_mapFromScene_5(pObject,P1,P2)
+		return pTempObj
+
+	Func mapFromScene_6 P1,P2,P3,P4
+		return QGraphicsView_mapFromScene_6(pObject,P1,P2,P3,P4)
+
+	Func mapToScene P1
+		pTempObj = new QPointF
+		pTempObj.pObject = QGraphicsView_mapToScene(pObject,GetObjectPointerFromRingObject(P1))
+		return pTempObj
+
+	Func mapToScene_2 P1
+		return QGraphicsView_mapToScene_2(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func mapToScene_3 P1
+		return QGraphicsView_mapToScene_3(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func mapToScene_4 P1
+		pTempObj = new QPainterPath
+		pTempObj.pObject = QGraphicsView_mapToScene_4(pObject,GetObjectPointerFromRingObject(P1))
+		return pTempObj
+
+	Func mapToScene_5 P1,P2
+		pTempObj = new QPointF
+		pTempObj.pObject = QGraphicsView_mapToScene_5(pObject,P1,P2)
+		return pTempObj
+
+	Func mapToScene_6 P1,P2,P3,P4
+		return QGraphicsView_mapToScene_6(pObject,P1,P2,P3,P4)
+
+	Func matrix 
+		return QGraphicsView_matrix(pObject)
+
+	Func optimizationFlags 
+		return QGraphicsView_optimizationFlags(pObject)
+
+	Func render P1,P2,P3,P4
+		return QGraphicsView_render(pObject,GetObjectPointerFromRingObject(P1),GetObjectPointerFromRingObject(P2),GetObjectPointerFromRingObject(P3),P4)
+
+	Func renderHints 
+		return QGraphicsView_renderHints(pObject)
+
+	Func resetCachedContent 
+		return QGraphicsView_resetCachedContent(pObject)
+
+	Func resetMatrix 
+		return QGraphicsView_resetMatrix(pObject)
+
+	Func resetTransform 
+		return QGraphicsView_resetTransform(pObject)
+
+	Func resizeAnchor 
+		return QGraphicsView_resizeAnchor(pObject)
+
+	Func rotate P1
+		return QGraphicsView_rotate(pObject,P1)
+
+	Func rubberBandRect 
+		pTempObj = new QRect
+		pTempObj.pObject = QGraphicsView_rubberBandRect(pObject)
+		return pTempObj
+
+	Func rubberBandSelectionMode 
+		return QGraphicsView_rubberBandSelectionMode(pObject)
+
+	Func scale P1,P2
+		return QGraphicsView_scale(pObject,P1,P2)
+
+	Func scene 
+		return QGraphicsView_scene(pObject)
+
+	Func sceneRect 
+		return QGraphicsView_sceneRect(pObject)
+
+	Func setAlignment P1
+		return QGraphicsView_setAlignment(pObject,P1)
+
+	Func setBackgroundBrush P1
+		return QGraphicsView_setBackgroundBrush(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setCacheMode P1
+		return QGraphicsView_setCacheMode(pObject,P1)
+
+	Func setDragMode P1
+		return QGraphicsView_setDragMode(pObject,P1)
+
+	Func setForegroundBrush P1
+		return QGraphicsView_setForegroundBrush(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setInteractive P1
+		return QGraphicsView_setInteractive(pObject,P1)
+
+	Func setMatrix P1,P2
+		return QGraphicsView_setMatrix(pObject,GetObjectPointerFromRingObject(P1),P2)
+
+	Func setOptimizationFlag P1,P2
+		return QGraphicsView_setOptimizationFlag(pObject,P1,P2)
+
+	Func setOptimizationFlags P1
+		return QGraphicsView_setOptimizationFlags(pObject,P1)
+
+	Func setRenderHint P1,P2
+		return QGraphicsView_setRenderHint(pObject,P1,P2)
+
+	Func setRenderHints P1
+		return QGraphicsView_setRenderHints(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setResizeAnchor P1
+		return QGraphicsView_setResizeAnchor(pObject,P1)
+
+	Func setRubberBandSelectionMode P1
+		return QGraphicsView_setRubberBandSelectionMode(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setScene P1
+		return QGraphicsView_setScene(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setSceneRect P1
+		return QGraphicsView_setSceneRect(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setSceneRect_2 P1,P2,P3,P4
+		return QGraphicsView_setSceneRect_2(pObject,P1,P2,P3,P4)
+
+	Func setTransform P1,P2
+		return QGraphicsView_setTransform(pObject,GetObjectPointerFromRingObject(P1),P2)
+
+	Func setTransformationAnchor P1
+		return QGraphicsView_setTransformationAnchor(pObject,P1)
+
+	Func setViewportUpdateMode P1
+		return QGraphicsView_setViewportUpdateMode(pObject,P1)
+
+	Func shear P1,P2
+		return QGraphicsView_shear(pObject,P1,P2)
+
+	Func transform 
+		pTempObj = new QTransform
+		pTempObj.pObject = QGraphicsView_transform(pObject)
+		return pTempObj
+
+	Func transformationAnchor 
+		return QGraphicsView_transformationAnchor(pObject)
+
+	Func translate P1,P2
+		return QGraphicsView_translate(pObject,P1,P2)
+
+	Func viewportTransform 
+		pTempObj = new QTransform
+		pTempObj.pObject = QGraphicsView_viewportTransform(pObject)
+		return pTempObj
+
+	Func viewportUpdateMode 
+		return QGraphicsView_viewportUpdateMode(pObject)
+
+	Func invalidateScene P1,P2
+		return QGraphicsView_invalidateScene(pObject,GetObjectPointerFromRingObject(P1),GetObjectPointerFromRingObject(P2))
+
+	Func updateScene P1
+		return QGraphicsView_updateScene(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func updateSceneRect P1
+		return QGraphicsView_updateSceneRect(pObject,GetObjectPointerFromRingObject(P1))
+
 Class QOpenGLWidget from QWidget
 
 	pObject
@@ -20519,6 +20869,46 @@ Class QPrintPreviewWidget from QWidget
 
 	Func getpreviewChangedEvent 
 		return QPrintPreviewWidget_getpreviewChangedEvent(pObject)
+
+Class QPrintDialog from QAbstractPrintDialog
+
+	pObject
+
+	Func init P1,P2
+		pObject = QPrintDialog_new(GetObjectPointerFromRingObject(P1),GetObjectPointerFromRingObject(P2))
+		return self
+
+	Func delete
+		pObject = QPrintDialog_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func open P1,P2
+		return QPrintDialog_open(pObject,GetObjectPointerFromRingObject(P1),P2)
+
+	Func options 
+		return QPrintDialog_options(pObject)
+
+	Func printer 
+		pTempObj = new QPrinter
+		pTempObj.pObject = QPrintDialog_printer(pObject)
+		return pTempObj
+
+	Func setOption P1,P2
+		return QPrintDialog_setOption(pObject,P1,P2)
+
+	Func setOptions P1
+		return QPrintDialog_setOptions(pObject,P1)
+
+	Func testOption P1
+		return QPrintDialog_testOption(pObject,P1)
+
+	Func setacceptedEvent P1
+		return QPrintDialog_setacceptedEvent(pObject,P1)
+
+	Func getacceptedEvent 
+		return QPrintDialog_getacceptedEvent(pObject)
 
 Class QPrinter
 
@@ -23316,122 +23706,119 @@ Class QNmeaPositionInfoSource from QGeoPositionInfoSource
 	Func updateMode 
 		return QNmeaPositionInfoSource_updateMode(pObject)
 
-Class QWebView from QWidget
+Class QWebEngineView from QWidget
 
 	pObject
 
 	Func init P1
-		pObject = QWebView_new(GetObjectPointerFromRingObject(P1))
+		pObject = QWebEngineView_new(GetObjectPointerFromRingObject(P1))
 		return self
 
 	Func delete
-		pObject = QWebView_delete(pObject)
+		pObject = QWebEngineView_delete(pObject)
 
 	Func ObjectPointer
 		return pObject
 
 	Func hasSelection 
-		return QWebView_hasSelection(pObject)
+		return QWebEngineView_hasSelection(pObject)
 
 	Func history 
-		return QWebView_history(pObject)
+		return QWebEngineView_history(pObject)
 
 	Func loadpage P1
-		return QWebView_load(pObject,GetObjectPointerFromRingObject(P1))
+		return QWebEngineView_load(pObject,GetObjectPointerFromRingObject(P1))
 
 	Func page 
-		return QWebView_page(pObject)
+		return QWebEngineView_page(pObject)
 
 	Func pageAction P1
 		pTempObj = new QAction
-		pTempObj.pObject = QWebView_pageAction(pObject,P1)
+		pTempObj.pObject = QWebEngineView_pageAction(pObject,P1)
 		return pTempObj
 
 	Func selectedText 
-		return QWebView_selectedText(pObject)
+		return QWebEngineView_selectedText(pObject)
 
 	Func setContent P1,P2,P3
-		return QWebView_setContent(pObject,GetObjectPointerFromRingObject(P1),P2,GetObjectPointerFromRingObject(P3))
+		return QWebEngineView_setContent(pObject,GetObjectPointerFromRingObject(P1),P2,GetObjectPointerFromRingObject(P3))
 
 	Func setHtml P1,P2
-		return QWebView_setHtml(pObject,P1,GetObjectPointerFromRingObject(P2))
+		return QWebEngineView_setHtml(pObject,P1,GetObjectPointerFromRingObject(P2))
 
 	Func setPage P1
-		return QWebView_setPage(pObject,GetObjectPointerFromRingObject(P1))
+		return QWebEngineView_setPage(pObject,GetObjectPointerFromRingObject(P1))
 
 	Func setUrl P1
-		return QWebView_setUrl(pObject,GetObjectPointerFromRingObject(P1))
+		return QWebEngineView_setUrl(pObject,GetObjectPointerFromRingObject(P1))
 
 	Func setZoomFactor P1
-		return QWebView_setZoomFactor(pObject,P1)
+		return QWebEngineView_setZoomFactor(pObject,P1)
 
 	Func settings 
-		return QWebView_settings(pObject)
+		return QWebEngineView_settings(pObject)
 
 	Func title 
-		return QWebView_title(pObject)
+		return QWebEngineView_title(pObject)
 
 	Func triggerPageAction P1,P2
-		return QWebView_triggerPageAction(pObject,P1,P2)
+		return QWebEngineView_triggerPageAction(pObject,P1,P2)
 
 	Func url 
 		pTempObj = new QUrl
-		pTempObj.pObject = QWebView_url(pObject)
+		pTempObj.pObject = QWebEngineView_url(pObject)
 		return pTempObj
 
 	Func zoomFactor 
-		return QWebView_zoomFactor(pObject)
+		return QWebEngineView_zoomFactor(pObject)
 
 	Func back 
-		return QWebView_back(pObject)
+		return QWebEngineView_back(pObject)
 
 	Func forward 
-		return QWebView_forward(pObject)
-
-	Func print P1
-		return QWebView_print(pObject,GetObjectPointerFromRingObject(P1))
+		return QWebEngineView_forward(pObject)
 
 	Func reload 
-		return QWebView_reload(pObject)
+		return QWebEngineView_reload(pObject)
 
 	Func stop 
-		return QWebView_stop(pObject)
+		return QWebEngineView_stop(pObject)
 
 	Func setloadFinishedEvent P1
-		return QWebView_setloadFinishedEvent(pObject,P1)
+		return QWebEngineView_setloadFinishedEvent(pObject,P1)
 
 	Func setloadProgressEvent P1
-		return QWebView_setloadProgressEvent(pObject,P1)
+		return QWebEngineView_setloadProgressEvent(pObject,P1)
 
 	Func setloadStartedEvent P1
-		return QWebView_setloadStartedEvent(pObject,P1)
+		return QWebEngineView_setloadStartedEvent(pObject,P1)
 
 	Func setselectionChangedEvent P1
-		return QWebView_setselectionChangedEvent(pObject,P1)
+		return QWebEngineView_setselectionChangedEvent(pObject,P1)
 
 	Func settitleChangedEvent P1
-		return QWebView_settitleChangedEvent(pObject,P1)
+		return QWebEngineView_settitleChangedEvent(pObject,P1)
 
 	Func seturlChangedEvent P1
-		return QWebView_seturlChangedEvent(pObject,P1)
+		return QWebEngineView_seturlChangedEvent(pObject,P1)
 
 	Func getloadFinishedEvent 
-		return QWebView_getloadFinishedEvent(pObject)
+		return QWebEngineView_getloadFinishedEvent(pObject)
 
 	Func getloadProgressEvent 
-		return QWebView_getloadProgressEvent(pObject)
+		return QWebEngineView_getloadProgressEvent(pObject)
 
 	Func getloadStartedEvent 
-		return QWebView_getloadStartedEvent(pObject)
+		return QWebEngineView_getloadStartedEvent(pObject)
 
 	Func getselectionChangedEvent 
-		return QWebView_getselectionChangedEvent(pObject)
+		return QWebEngineView_getselectionChangedEvent(pObject)
 
 	Func gettitleChangedEvent 
-		return QWebView_gettitleChangedEvent(pObject)
+		return QWebEngineView_gettitleChangedEvent(pObject)
 
 	Func geturlChangedEvent 
-		return QWebView_geturlChangedEvent(pObject)
+		return QWebEngineView_geturlChangedEvent(pObject)
 
 Class QSerialPort from QIODevice
 
@@ -23664,17 +24051,47 @@ Class QAxBase from QObject
 
 	Func dynamicCall_2 P1,P2
 		pTempObj = new QVariant
-		pTempObj.pObject = QAxBase_dynamicCall_2(pObject,P1,P2)
+		pTempObj.pObject = QAxBase_dynamicCall_2(pObject,P1,GetObjectPointerFromRingObject(P2))
 		return pTempObj
 
-	Func dynamicCall_3 P1,P2
+	Func dynamicCall_3 P1,P2,P3
 		pTempObj = new QVariant
-		pTempObj.pObject = QAxBase_dynamicCall_3(pObject,P1,GetObjectPointerFromRingObject(P2))
+		pTempObj.pObject = QAxBase_dynamicCall_3(pObject,P1,GetObjectPointerFromRingObject(P2),GetObjectPointerFromRingObject(P3))
 		return pTempObj
 
-	Func dynamicCall_4 P1,P2
+	Func dynamicCall_4 P1,P2,P3,P4
 		pTempObj = new QVariant
-		pTempObj.pObject = QAxBase_dynamicCall_4(pObject,P1,P2)
+		pTempObj.pObject = QAxBase_dynamicCall_4(pObject,P1,GetObjectPointerFromRingObject(P2),GetObjectPointerFromRingObject(P3),GetObjectPointerFromRingObject(P4))
+		return pTempObj
+
+	Func dynamicCall_5 P1,P2,P3,P4,P5
+		pTempObj = new QVariant
+		pTempObj.pObject = QAxBase_dynamicCall_5(pObject,P1,GetObjectPointerFromRingObject(P2),GetObjectPointerFromRingObject(P3),GetObjectPointerFromRingObject(P4),GetObjectPointerFromRingObject(P5))
+		return pTempObj
+
+	Func dynamicCall_6 P1,P2,P3,P4,P5,P6
+		pTempObj = new QVariant
+		pTempObj.pObject = QAxBase_dynamicCall_6(pObject,P1,GetObjectPointerFromRingObject(P2),GetObjectPointerFromRingObject(P3),GetObjectPointerFromRingObject(P4),GetObjectPointerFromRingObject(P5),GetObjectPointerFromRingObject(P6))
+		return pTempObj
+
+	Func dynamicCall_7 P1,P2,P3,P4,P5,P6,P7
+		pTempObj = new QVariant
+		pTempObj.pObject = QAxBase_dynamicCall_7(pObject,P1,GetObjectPointerFromRingObject(P2),GetObjectPointerFromRingObject(P3),GetObjectPointerFromRingObject(P4),GetObjectPointerFromRingObject(P5),GetObjectPointerFromRingObject(P6),GetObjectPointerFromRingObject(P7))
+		return pTempObj
+
+	Func dynamicCall_8 P1,P2,P3,P4,P5,P6,P7,P8
+		pTempObj = new QVariant
+		pTempObj.pObject = QAxBase_dynamicCall_8(pObject,P1,GetObjectPointerFromRingObject(P2),GetObjectPointerFromRingObject(P3),GetObjectPointerFromRingObject(P4),GetObjectPointerFromRingObject(P5),GetObjectPointerFromRingObject(P6),GetObjectPointerFromRingObject(P7),GetObjectPointerFromRingObject(P8))
+		return pTempObj
+
+	Func dynamicCall_9 P1,P2,P3,P4,P5,P6,P7,P8,P9
+		pTempObj = new QVariant
+		pTempObj.pObject = QAxBase_dynamicCall_9(pObject,P1,GetObjectPointerFromRingObject(P2),GetObjectPointerFromRingObject(P3),GetObjectPointerFromRingObject(P4),GetObjectPointerFromRingObject(P5),GetObjectPointerFromRingObject(P6),GetObjectPointerFromRingObject(P7),GetObjectPointerFromRingObject(P8),GetObjectPointerFromRingObject(P9))
+		return pTempObj
+
+	Func dynamicCall_10 P1,P2
+		pTempObj = new QVariant
+		pTempObj.pObject = QAxBase_dynamicCall_10(pObject,P1,GetObjectPointerFromRingObject(P2))
 		return pTempObj
 
 	Func generateDocumentation 
@@ -23693,189 +24110,39 @@ Class QAxBase from QObject
 		pTempObj.pObject = QAxBase_querySubObject_2(pObject,P1,GetObjectPointerFromRingObject(P2))
 		return pTempObj
 
-	Func querySubObject_3 P1,P2
+	Func querySubObject_3 P1,P2,P3
 		pTempObj = new QAxObject
-		pTempObj.pObject = QAxBase_querySubObject_3(pObject,P1,P2)
+		pTempObj.pObject = QAxBase_querySubObject_3(pObject,P1,GetObjectPointerFromRingObject(P2),GetObjectPointerFromRingObject(P3))
 		return pTempObj
 
-	Func querySubObject_4 P1,P2
+	Func querySubObject_4 P1,P2,P3,P4
 		pTempObj = new QAxObject
-		pTempObj.pObject = QAxBase_querySubObject_4(pObject,P1,P2)
+		pTempObj.pObject = QAxBase_querySubObject_4(pObject,P1,GetObjectPointerFromRingObject(P2),GetObjectPointerFromRingObject(P3),GetObjectPointerFromRingObject(P4))
 		return pTempObj
 
-	Func querySubObject_5 P1,P2,P3
+	Func querySubObject_5 P1,P2,P3,P4,P5
 		pTempObj = new QAxObject
-		pTempObj.pObject = QAxBase_querySubObject_5(pObject,P1,P2,P3)
+		pTempObj.pObject = QAxBase_querySubObject_5(pObject,P1,GetObjectPointerFromRingObject(P2),GetObjectPointerFromRingObject(P3),GetObjectPointerFromRingObject(P4),GetObjectPointerFromRingObject(P5))
 		return pTempObj
 
-	Func querySubObject_6 P1,P2,P3
+	Func querySubObject_6 P1,P2,P3,P4,P5,P6
 		pTempObj = new QAxObject
-		pTempObj.pObject = QAxBase_querySubObject_6(pObject,P1,P2,P3)
+		pTempObj.pObject = QAxBase_querySubObject_6(pObject,P1,GetObjectPointerFromRingObject(P2),GetObjectPointerFromRingObject(P3),GetObjectPointerFromRingObject(P4),GetObjectPointerFromRingObject(P5),GetObjectPointerFromRingObject(P6))
 		return pTempObj
 
-	Func querySubObject_7 P1,P2,P3,P4
+	Func querySubObject_7 P1,P2,P3,P4,P5,P6,P7
 		pTempObj = new QAxObject
-		pTempObj.pObject = QAxBase_querySubObject_7(pObject,P1,P2,P3,P4)
+		pTempObj.pObject = QAxBase_querySubObject_7(pObject,P1,GetObjectPointerFromRingObject(P2),GetObjectPointerFromRingObject(P3),GetObjectPointerFromRingObject(P4),GetObjectPointerFromRingObject(P5),GetObjectPointerFromRingObject(P6),GetObjectPointerFromRingObject(P7))
 		return pTempObj
 
-	Func querySubObject_8 P1,P2,P3,P4
+	Func querySubObject_8 P1,P2,P3,P4,P5,P6,P7,P8
 		pTempObj = new QAxObject
-		pTempObj.pObject = QAxBase_querySubObject_8(pObject,P1,P2,P3,P4)
+		pTempObj.pObject = QAxBase_querySubObject_8(pObject,P1,GetObjectPointerFromRingObject(P2),GetObjectPointerFromRingObject(P3),GetObjectPointerFromRingObject(P4),GetObjectPointerFromRingObject(P5),GetObjectPointerFromRingObject(P6),GetObjectPointerFromRingObject(P7),GetObjectPointerFromRingObject(P8))
 		return pTempObj
 
-	Func querySubObject_9 P1,P2
+	Func querySubObject_9 P1,P2,P3,P4,P5,P6,P7,P8,P9
 		pTempObj = new QAxObject
-		pTempObj.pObject = QAxBase_querySubObject_9(pObject,P1,P2)
-		return pTempObj
-
-	Func querySubObject_10 P1,P2,P3
-		pTempObj = new QAxObject
-		pTempObj.pObject = QAxBase_querySubObject_10(pObject,P1,P2,P3)
-		return pTempObj
-
-	Func querySubObject_11 P1,P2,P3,P4
-		pTempObj = new QAxObject
-		pTempObj.pObject = QAxBase_querySubObject_11(pObject,P1,P2,P3,P4)
-		return pTempObj
-
-	Func querySubObject_12 P1,P2,P3,P4
-		pTempObj = new QAxObject
-		pTempObj.pObject = QAxBase_querySubObject_12(pObject,P1,P2,P3,P4)
-		return pTempObj
-
-	Func querySubObject_13 P1,P2
-		pTempObj = new QAxObject
-		pTempObj.pObject = QAxBase_querySubObject_13(pObject,P1,P2)
-		return pTempObj
-
-	Func querySubObject_14 P1,P2,P3
-		pTempObj = new QAxObject
-		pTempObj.pObject = QAxBase_querySubObject_14(pObject,P1,P2,P3)
-		return pTempObj
-
-	Func querySubObject_15 P1,P2,P3,P4
-		pTempObj = new QAxObject
-		pTempObj.pObject = QAxBase_querySubObject_15(pObject,P1,P2,P3,P4)
-		return pTempObj
-
-	Func querySubObject_16 P1,P2,P3,P4
-		pTempObj = new QAxObject
-		pTempObj.pObject = QAxBase_querySubObject_16(pObject,P1,P2,P3,P4)
-		return pTempObj
-
-	Func querySubObject_17 P1,P2,P3
-		pTempObj = new QAxObject
-		pTempObj.pObject = QAxBase_querySubObject_17(pObject,P1,P2,P3)
-		return pTempObj
-
-	Func querySubObject_18 P1,P2,P3,P4
-		pTempObj = new QAxObject
-		pTempObj.pObject = QAxBase_querySubObject_18(pObject,P1,P2,P3,P4)
-		return pTempObj
-
-	Func querySubObject_19 P1,P2,P3,P4,P5
-		pTempObj = new QAxObject
-		pTempObj.pObject = QAxBase_querySubObject_19(pObject,P1,P2,P3,P4,P5)
-		return pTempObj
-
-	Func querySubObject_20 P1,P2,P3,P4,P5
-		pTempObj = new QAxObject
-		pTempObj.pObject = QAxBase_querySubObject_20(pObject,P1,P2,P3,P4,P5)
-		return pTempObj
-
-	Func querySubObject_21 P1,P2,P3,P4,P5
-		pTempObj = new QAxObject
-		pTempObj.pObject = QAxBase_querySubObject_21(pObject,P1,P2,P3,P4,P5)
-		return pTempObj
-
-	Func querySubObject_22 P1,P2,P3
-		pTempObj = new QAxObject
-		pTempObj.pObject = QAxBase_querySubObject_22(pObject,P1,P2,P3)
-		return pTempObj
-
-	Func querySubObject_23 P1,P2,P3,P4
-		pTempObj = new QAxObject
-		pTempObj.pObject = QAxBase_querySubObject_23(pObject,P1,P2,P3,P4)
-		return pTempObj
-
-	Func querySubObject_24 P1,P2,P3,P4,P5
-		pTempObj = new QAxObject
-		pTempObj.pObject = QAxBase_querySubObject_24(pObject,P1,P2,P3,P4,P5)
-		return pTempObj
-
-	Func querySubObject_25 P1,P2,P3,P4,P5
-		pTempObj = new QAxObject
-		pTempObj.pObject = QAxBase_querySubObject_25(pObject,P1,P2,P3,P4,P5)
-		return pTempObj
-
-	Func querySubObject_26 P1,P2,P3,P4,P5
-		pTempObj = new QAxObject
-		pTempObj.pObject = QAxBase_querySubObject_26(pObject,P1,P2,P3,P4,P5)
-		return pTempObj
-
-	Func querySubObject_27 P1,P2,P3
-		pTempObj = new QAxObject
-		pTempObj.pObject = QAxBase_querySubObject_27(pObject,P1,P2,P3)
-		return pTempObj
-
-	Func querySubObject_28 P1,P2,P3,P4
-		pTempObj = new QAxObject
-		pTempObj.pObject = QAxBase_querySubObject_28(pObject,P1,P2,P3,P4)
-		return pTempObj
-
-	Func querySubObject_29 P1,P2,P3,P4,P5
-		pTempObj = new QAxObject
-		pTempObj.pObject = QAxBase_querySubObject_29(pObject,P1,P2,P3,P4,P5)
-		return pTempObj
-
-	Func querySubObject_30 P1,P2,P3,P4,P5
-		pTempObj = new QAxObject
-		pTempObj.pObject = QAxBase_querySubObject_30(pObject,P1,P2,P3,P4,P5)
-		return pTempObj
-
-	Func querySubObject_31 P1,P2,P3,P4,P5
-		pTempObj = new QAxObject
-		pTempObj.pObject = QAxBase_querySubObject_31(pObject,P1,P2,P3,P4,P5)
-		return pTempObj
-
-	Func querySubObject_32 P1,P2,P3,P4,P5,P6,P7,P8,P9
-		pTempObj = new QAxObject
-		pTempObj.pObject = QAxBase_querySubObject_32(pObject,P1,GetObjectPointerFromRingObject(P2),GetObjectPointerFromRingObject(P3),GetObjectPointerFromRingObject(P4),GetObjectPointerFromRingObject(P5),GetObjectPointerFromRingObject(P6),GetObjectPointerFromRingObject(P7),GetObjectPointerFromRingObject(P8),GetObjectPointerFromRingObject(P9))
-		return pTempObj
-
-	Func querySubObject_33 P1,P2,P3,P4,P5,P6,P7,P8
-		pTempObj = new QAxObject
-		pTempObj.pObject = QAxBase_querySubObject_33(pObject,P1,GetObjectPointerFromRingObject(P2),GetObjectPointerFromRingObject(P3),GetObjectPointerFromRingObject(P4),GetObjectPointerFromRingObject(P5),GetObjectPointerFromRingObject(P6),GetObjectPointerFromRingObject(P7),GetObjectPointerFromRingObject(P8))
-		return pTempObj
-
-	Func querySubObject_34 P1,P2,P3,P4,P5,P6,P7
-		pTempObj = new QAxObject
-		pTempObj.pObject = QAxBase_querySubObject_34(pObject,P1,GetObjectPointerFromRingObject(P2),GetObjectPointerFromRingObject(P3),GetObjectPointerFromRingObject(P4),GetObjectPointerFromRingObject(P5),GetObjectPointerFromRingObject(P6),GetObjectPointerFromRingObject(P7))
-		return pTempObj
-
-	Func querySubObject_35 P1,P2,P3,P4,P5,P6
-		pTempObj = new QAxObject
-		pTempObj.pObject = QAxBase_querySubObject_35(pObject,P1,GetObjectPointerFromRingObject(P2),GetObjectPointerFromRingObject(P3),GetObjectPointerFromRingObject(P4),GetObjectPointerFromRingObject(P5),GetObjectPointerFromRingObject(P6))
-		return pTempObj
-
-	Func querySubObject_36 P1,P2,P3,P4,P5
-		pTempObj = new QAxObject
-		pTempObj.pObject = QAxBase_querySubObject_36(pObject,P1,GetObjectPointerFromRingObject(P2),GetObjectPointerFromRingObject(P3),GetObjectPointerFromRingObject(P4),GetObjectPointerFromRingObject(P5))
-		return pTempObj
-
-	Func querySubObject_37 P1,P2,P3,P4
-		pTempObj = new QAxObject
-		pTempObj.pObject = QAxBase_querySubObject_37(pObject,P1,GetObjectPointerFromRingObject(P2),GetObjectPointerFromRingObject(P3),GetObjectPointerFromRingObject(P4))
-		return pTempObj
-
-	Func querySubObject_38 P1,P2,P3
-		pTempObj = new QAxObject
-		pTempObj.pObject = QAxBase_querySubObject_38(pObject,P1,GetObjectPointerFromRingObject(P2),GetObjectPointerFromRingObject(P3))
-		return pTempObj
-
-	Func querySubObject_39 P1,P2
-		pTempObj = new QAxObject
-		pTempObj.pObject = QAxBase_querySubObject_39(pObject,P1,GetObjectPointerFromRingObject(P2))
+		pTempObj.pObject = QAxBase_querySubObject_9(pObject,P1,GetObjectPointerFromRingObject(P2),GetObjectPointerFromRingObject(P3),GetObjectPointerFromRingObject(P4),GetObjectPointerFromRingObject(P5),GetObjectPointerFromRingObject(P6),GetObjectPointerFromRingObject(P7),GetObjectPointerFromRingObject(P8),GetObjectPointerFromRingObject(P9))
 		return pTempObj
 
 	Func setControl P1
@@ -23999,6 +24266,57 @@ Class QQuickWidget from QWidget
 	Func getstatusChangedEvent 
 		return QQuickWidget_getstatusChangedEvent(pObject)
 
+Class QQuickView from QWindow
+
+	pObject
+
+	Func init 
+		pObject = QQuickView_new()
+		return self
+
+	Func delete
+		pObject = QQuickView_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func engine 
+		return QQuickView_engine(pObject)
+
+	Func errors 
+		return QQuickView_errors(pObject)
+
+	Func initialSize 
+		pTempObj = new QSize
+		pTempObj.pObject = QQuickView_initialSize(pObject)
+		return pTempObj
+
+	Func resizeMode 
+		return QQuickView_resizeMode(pObject)
+
+	Func rootContext 
+		return QQuickView_rootContext(pObject)
+
+	Func rootObject 
+		return QQuickView_rootObject(pObject)
+
+	Func setFormat P1
+		return QQuickView_setFormat(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setResizeMode P1
+		return QQuickView_setResizeMode(pObject,P1)
+
+	Func source 
+		pTempObj = new QUrl
+		pTempObj.pObject = QQuickView_source(pObject)
+		return pTempObj
+
+	Func status 
+		return QQuickView_status(pObject)
+
+	Func setSource P1
+		return QQuickView_setSource(pObject,GetObjectPointerFromRingObject(P1))
+
 Class QQmlError
 
 	pObject
@@ -24052,6 +24370,2148 @@ Class QQmlError
 		pTempObj = new QUrl
 		pTempObj.pObject = QQmlError_url(pObject)
 		return pTempObj
+
+Class QTextToSpeech from QObject
+
+	pObject
+
+	Func init P1
+		pObject = QTextToSpeech_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QTextToSpeech_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func availableLocales 
+		return QTextToSpeech_availableLocales(pObject)
+
+	Func availableVoices 
+		pTempObj = new QVectorQVoice
+		pTempObj.pObject = QTextToSpeech_availableVoices(pObject)
+		return pTempObj
+
+	Func locale 
+		return QTextToSpeech_locale(pObject)
+
+	Func pitch 
+		return QTextToSpeech_pitch(pObject)
+
+	Func rate 
+		return QTextToSpeech_rate(pObject)
+
+	Func state 
+		return QTextToSpeech_state(pObject)
+
+	Func voice 
+		pTempObj = new QVoice
+		pTempObj.pObject = QTextToSpeech_voice(pObject)
+		return pTempObj
+
+	Func volume 
+		return QTextToSpeech_volume(pObject)
+
+	Func pause 
+		return QTextToSpeech_pause(pObject)
+
+	Func resume 
+		return QTextToSpeech_resume(pObject)
+
+	Func say P1
+		return QTextToSpeech_say(pObject,P1)
+
+	Func setLocale P1
+		return QTextToSpeech_setLocale(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setPitch P1
+		return QTextToSpeech_setPitch(pObject,P1)
+
+	Func setRate P1
+		return QTextToSpeech_setRate(pObject,P1)
+
+	Func setVoice P1
+		return QTextToSpeech_setVoice(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setVolume P1
+		return QTextToSpeech_setVolume(pObject,P1)
+
+	Func stop 
+		return QTextToSpeech_stop(pObject)
+
+	Func availableEngines 
+		pTempObj = new QStringList
+		pTempObj.pObject = QTextToSpeech_availableEngines(pObject)
+		return pTempObj
+
+	Func setlocaleChangedEvent P1
+		return QTextToSpeech_setlocaleChangedEvent(pObject,P1)
+
+	Func setpitchChangedEvent P1
+		return QTextToSpeech_setpitchChangedEvent(pObject,P1)
+
+	Func setrateChangedEvent P1
+		return QTextToSpeech_setrateChangedEvent(pObject,P1)
+
+	Func setstateChangedEvent P1
+		return QTextToSpeech_setstateChangedEvent(pObject,P1)
+
+	Func setvoiceChangedEvent P1
+		return QTextToSpeech_setvoiceChangedEvent(pObject,P1)
+
+	Func setvolumeChangedEvent P1
+		return QTextToSpeech_setvolumeChangedEvent(pObject,P1)
+
+	Func getlocaleChangedEvent 
+		return QTextToSpeech_getlocaleChangedEvent(pObject)
+
+	Func getpitchChangedEvent 
+		return QTextToSpeech_getpitchChangedEvent(pObject)
+
+	Func getrateChangedEvent 
+		return QTextToSpeech_getrateChangedEvent(pObject)
+
+	Func getstateChangedEvent 
+		return QTextToSpeech_getstateChangedEvent(pObject)
+
+	Func getvoiceChangedEvent 
+		return QTextToSpeech_getvoiceChangedEvent(pObject)
+
+	Func getvolumeChangedEvent 
+		return QTextToSpeech_getvolumeChangedEvent(pObject)
+
+Class QVoice
+
+	pObject
+
+	Func init 
+		pObject = QVoice_new()
+		return self
+
+	Func delete
+		pObject = QVoice_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func age 
+		return QVoice_age(pObject)
+
+	Func gender 
+		return QVoice_gender(pObject)
+
+	Func name 
+		return QVoice_name(pObject)
+
+	Func ageName P1
+		return QVoice_ageName(pObject,P1)
+
+	Func genderName P1
+		return QVoice_genderName(pObject,P1)
+
+Class QVectorQVoice
+
+	pObject
+
+	Func init 
+		pObject = QVectorQVoice_new()
+		return self
+
+	Func delete
+		pObject = QVectorQVoice_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func count 
+		return QVectorQVoice_count(pObject)
+
+	Func value P1
+		pTempObj = new QVoice
+		pTempObj.pObject = QVectorQVoice_value(pObject,P1)
+		return pTempObj
+
+Class QAbstractAspect from QObject
+
+	pObject
+
+	Func init P1
+		pObject = QAbstractAspect_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QAbstractAspect_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func scheduleSingleShotJob P1
+		return QAbstractAspect_scheduleSingleShotJob(pObject,GetObjectPointerFromRingObject(P1))
+
+Class QNode from QObject
+
+	pObject
+
+	Func init P1
+		pObject = QNode_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QNode_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func blockNotifications P1
+		return QNode_blockNotifications(pObject,P1)
+
+	Func childNodes 
+		return QNode_childNodes(pObject)
+
+	Func clearPropertyTracking P1
+		return QNode_clearPropertyTracking(pObject,P1)
+
+	Func clearPropertyTrackings 
+		return QNode_clearPropertyTrackings(pObject)
+
+	Func defaultPropertyTrackingMode 
+		return QNode_defaultPropertyTrackingMode(pObject)
+
+	Func id 
+		return QNode_id(pObject)
+
+	Func isEnabled 
+		return QNode_isEnabled(pObject)
+
+	Func notificationsBlocked 
+		return QNode_notificationsBlocked(pObject)
+
+	Func parentNode 
+		return QNode_parentNode(pObject)
+
+	Func propertyTracking P1
+		return QNode_propertyTracking(pObject,P1)
+
+	Func sendReply P1
+		return QNode_sendReply(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setPropertyTracking P1,P2
+		return QNode_setPropertyTracking(pObject,P1,P2)
+
+	Func setDefaultPropertyTrackingMode P1
+		return QNode_setDefaultPropertyTrackingMode(pObject,P1)
+
+	Func setEnabled P1
+		return QNode_setEnabled(pObject,P1)
+
+	Func setParent P1
+		return QNode_setParent(pObject,GetObjectPointerFromRingObject(P1))
+
+Class QEntity from QNode
+
+	pObject
+
+	Func init P1
+		pObject = QEntity_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QEntity_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func addComponent P1
+		return QEntity_addComponent(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func components 
+		return QEntity_components(pObject)
+
+	Func parentEntity 
+		return QEntity_parentEntity(pObject)
+
+	Func removeComponent P1
+		return QEntity_removeComponent(pObject,GetObjectPointerFromRingObject(P1))
+
+Class QTransform
+
+	pObject
+
+	Func init P1
+		pObject = QTransform_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QTransform_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func matrix 
+		pTempObj = new QMatrix4x4
+		pTempObj.pObject = QTransform_matrix(pObject)
+		return pTempObj
+
+	Func rotation 
+		pTempObj = new QQuaternion
+		pTempObj.pObject = QTransform_rotation(pObject)
+		return pTempObj
+
+	Func rotationX 
+		return QTransform_rotationX(pObject)
+
+	Func rotationY 
+		return QTransform_rotationY(pObject)
+
+	Func rotationZ 
+		return QTransform_rotationZ(pObject)
+
+	Func scale 
+		return QTransform_scale(pObject)
+
+	Func scale3D 
+		pTempObj = new QVector3D
+		pTempObj.pObject = QTransform_scale3D(pObject)
+		return pTempObj
+
+	Func translation 
+		pTempObj = new QVector3D
+		pTempObj.pObject = QTransform_translation(pObject)
+		return pTempObj
+
+	Func setMatrix P1
+		return QTransform_setMatrix(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setRotation P1
+		return QTransform_setRotation(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setRotationX P1
+		return QTransform_setRotationX(pObject,P1)
+
+	Func setRotationY P1
+		return QTransform_setRotationY(pObject,P1)
+
+	Func setRotationZ P1
+		return QTransform_setRotationZ(pObject,P1)
+
+	Func setScale P1
+		return QTransform_setScale(pObject,P1)
+
+	Func setScale3D P1
+		return QTransform_setScale3D(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setTranslation P1
+		return QTransform_setTranslation(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func fromAxes P1,P2,P3
+		pTempObj = new QQuaternion
+		pTempObj.pObject = QTransform_fromAxes(pObject,GetObjectPointerFromRingObject(P1),GetObjectPointerFromRingObject(P2),GetObjectPointerFromRingObject(P3))
+		return pTempObj
+
+	Func fromAxesAndAngles P1,P2,P3,P4
+		pTempObj = new QQuaternion
+		pTempObj.pObject = QTransform_fromAxesAndAngles(pObject,GetObjectPointerFromRingObject(P1),P2,GetObjectPointerFromRingObject(P3),P4)
+		return pTempObj
+
+	Func fromAxesAndAngles_2 P1,P2,P3,P4,P5,P6
+		pTempObj = new QQuaternion
+		pTempObj.pObject = QTransform_fromAxesAndAngles_2(pObject,GetObjectPointerFromRingObject(P1),P2,GetObjectPointerFromRingObject(P3),P4,GetObjectPointerFromRingObject(P5),P6)
+		return pTempObj
+
+	Func fromAxisAndAngle P1,P2
+		pTempObj = new QQuaternion
+		pTempObj.pObject = QTransform_fromAxisAndAngle(pObject,GetObjectPointerFromRingObject(P1),P2)
+		return pTempObj
+
+	Func fromAxisAndAngle_2 P1,P2,P3,P4
+		pTempObj = new QQuaternion
+		pTempObj.pObject = QTransform_fromAxisAndAngle_2(pObject,P1,P2,P3,P4)
+		return pTempObj
+
+	Func fromEulerAngles P1
+		pTempObj = new QQuaternion
+		pTempObj.pObject = QTransform_fromEulerAngles(pObject,GetObjectPointerFromRingObject(P1))
+		return pTempObj
+
+	Func fromEulerAngles_2 P1,P2,P3
+		pTempObj = new QQuaternion
+		pTempObj.pObject = QTransform_fromEulerAngles_2(pObject,P1,P2,P3)
+		return pTempObj
+
+	Func rotateAround P1,P2,P3
+		pTempObj = new QMatrix4x4
+		pTempObj.pObject = QTransform_rotateAround(pObject,GetObjectPointerFromRingObject(P1),P2,GetObjectPointerFromRingObject(P3))
+		return pTempObj
+
+	Func rotateFromAxes P1,P2,P3
+		pTempObj = new QMatrix4x4
+		pTempObj.pObject = QTransform_rotateFromAxes(pObject,GetObjectPointerFromRingObject(P1),GetObjectPointerFromRingObject(P2),GetObjectPointerFromRingObject(P3))
+		return pTempObj
+
+Class QAspectEngine from QObject
+
+	pObject
+
+	Func init P1
+		pObject = QAspectEngine_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QAspectEngine_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func aspects 
+		return QAspectEngine_aspects(pObject)
+
+	Func executeCommand P1
+		pTempObj = new QVariant
+		pTempObj.pObject = QAspectEngine_executeCommand(pObject,P1)
+		return pTempObj
+
+	Func registerAspect P1
+		return QAspectEngine_registerAspect(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func registerAspect_2 P1
+		return QAspectEngine_registerAspect_2(pObject,P1)
+
+	Func rootEntity 
+		return QAspectEngine_rootEntity(pObject)
+
+	Func setRootEntity P1
+		return QAspectEngine_setRootEntity(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func unregisterAspect P1
+		return QAspectEngine_unregisterAspect(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func unregisterAspect_2 P1
+		return QAspectEngine_unregisterAspect_2(pObject,P1)
+
+Class QTorusMesh
+
+	pObject
+
+	Func init P1
+		pObject = QTorusMesh_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QTorusMesh_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func minorRadius 
+		return QTorusMesh_minorRadius(pObject)
+
+	Func radius 
+		return QTorusMesh_radius(pObject)
+
+	Func rings 
+		return QTorusMesh_rings(pObject)
+
+	Func slices 
+		return QTorusMesh_slices(pObject)
+
+	Func setMinorRadius P1
+		return QTorusMesh_setMinorRadius(pObject,P1)
+
+	Func setRadius P1
+		return QTorusMesh_setRadius(pObject,P1)
+
+	Func setRings P1
+		return QTorusMesh_setRings(pObject,P1)
+
+	Func setSlices P1
+		return QTorusMesh_setSlices(pObject,P1)
+
+Class QConeMesh
+
+	pObject
+
+	Func init P1
+		pObject = QConeMesh_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QConeMesh_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func bottomRadius 
+		return QConeMesh_bottomRadius(pObject)
+
+	Func hasBottomEndcap 
+		return QConeMesh_hasBottomEndcap(pObject)
+
+	Func hasTopEndcap 
+		return QConeMesh_hasTopEndcap(pObject)
+
+	Func length 
+		return QConeMesh_length(pObject)
+
+	Func rings 
+		return QConeMesh_rings(pObject)
+
+	Func slices 
+		return QConeMesh_slices(pObject)
+
+	Func topRadius 
+		return QConeMesh_topRadius(pObject)
+
+	Func setBottomRadius P1
+		return QConeMesh_setBottomRadius(pObject,P1)
+
+	Func setHasBottomEndcap P1
+		return QConeMesh_setHasBottomEndcap(pObject,P1)
+
+	Func setHasTopEndcap P1
+		return QConeMesh_setHasTopEndcap(pObject,P1)
+
+	Func setLength P1
+		return QConeMesh_setLength(pObject,P1)
+
+	Func setRings P1
+		return QConeMesh_setRings(pObject,P1)
+
+	Func setSlices P1
+		return QConeMesh_setSlices(pObject,P1)
+
+	Func setTopRadius P1
+		return QConeMesh_setTopRadius(pObject,P1)
+
+Class QCylinderMesh
+
+	pObject
+
+	Func init P1
+		pObject = QCylinderMesh_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QCylinderMesh_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func length 
+		return QCylinderMesh_length(pObject)
+
+	Func radius 
+		return QCylinderMesh_radius(pObject)
+
+	Func rings 
+		return QCylinderMesh_rings(pObject)
+
+	Func slices 
+		return QCylinderMesh_slices(pObject)
+
+	Func setLength P1
+		return QCylinderMesh_setLength(pObject,P1)
+
+	Func setRadius P1
+		return QCylinderMesh_setRadius(pObject,P1)
+
+	Func setRings P1
+		return QCylinderMesh_setRings(pObject,P1)
+
+	Func setSlices P1
+		return QCylinderMesh_setSlices(pObject,P1)
+
+Class QCuboidMesh
+
+	pObject
+
+	Func init P1
+		pObject = QCuboidMesh_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QCuboidMesh_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func xExtent 
+		return QCuboidMesh_xExtent(pObject)
+
+	Func xyMeshResolution 
+		pTempObj = new QSize
+		pTempObj.pObject = QCuboidMesh_xyMeshResolution(pObject)
+		return pTempObj
+
+	Func xzMeshResolution 
+		pTempObj = new QSize
+		pTempObj.pObject = QCuboidMesh_xzMeshResolution(pObject)
+		return pTempObj
+
+	Func yExtent 
+		return QCuboidMesh_yExtent(pObject)
+
+	Func yzMeshResolution 
+		pTempObj = new QSize
+		pTempObj.pObject = QCuboidMesh_yzMeshResolution(pObject)
+		return pTempObj
+
+	Func zExtent 
+		return QCuboidMesh_zExtent(pObject)
+
+	Func setXExtent P1
+		return QCuboidMesh_setXExtent(pObject,P1)
+
+	Func setXYMeshResolution P1
+		return QCuboidMesh_setXYMeshResolution(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setXZMeshResolution P1
+		return QCuboidMesh_setXZMeshResolution(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setYExtent P1
+		return QCuboidMesh_setYExtent(pObject,P1)
+
+	Func setYZMeshResolution P1
+		return QCuboidMesh_setYZMeshResolution(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setZExtent P1
+		return QCuboidMesh_setZExtent(pObject,P1)
+
+Class QPlaneMesh
+
+	pObject
+
+	Func init P1
+		pObject = QPlaneMesh_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QPlaneMesh_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func height 
+		return QPlaneMesh_height(pObject)
+
+	Func meshResolution 
+		pTempObj = new QSize
+		pTempObj.pObject = QPlaneMesh_meshResolution(pObject)
+		return pTempObj
+
+	Func mirrored 
+		return QPlaneMesh_mirrored(pObject)
+
+	Func width 
+		return QPlaneMesh_width(pObject)
+
+	Func setHeight P1
+		return QPlaneMesh_setHeight(pObject,P1)
+
+	Func setMeshResolution P1
+		return QPlaneMesh_setMeshResolution(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setMirrored P1
+		return QPlaneMesh_setMirrored(pObject,P1)
+
+	Func setWidth P1
+		return QPlaneMesh_setWidth(pObject,P1)
+
+Class QSphereMesh
+
+	pObject
+
+	Func init P1
+		pObject = QSphereMesh_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QSphereMesh_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func generateTangents 
+		return QSphereMesh_generateTangents(pObject)
+
+	Func radius 
+		return QSphereMesh_radius(pObject)
+
+	Func rings 
+		return QSphereMesh_rings(pObject)
+
+	Func slices 
+		return QSphereMesh_slices(pObject)
+
+	Func setGenerateTangents P1
+		return QSphereMesh_setGenerateTangents(pObject,P1)
+
+	Func setRadius P1
+		return QSphereMesh_setRadius(pObject,P1)
+
+	Func setRings P1
+		return QSphereMesh_setRings(pObject,P1)
+
+	Func setSlices P1
+		return QSphereMesh_setSlices(pObject,P1)
+
+Class QPhongMaterial
+
+	pObject
+
+	Func init P1
+		pObject = QPhongMaterial_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QPhongMaterial_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func ambient 
+		pTempObj = new QColor
+		pTempObj.pObject = QPhongMaterial_ambient(pObject)
+		return pTempObj
+
+	Func diffuse 
+		pTempObj = new QColor
+		pTempObj.pObject = QPhongMaterial_diffuse(pObject)
+		return pTempObj
+
+	Func shininess 
+		return QPhongMaterial_shininess(pObject)
+
+	Func specular 
+		pTempObj = new QColor
+		pTempObj.pObject = QPhongMaterial_specular(pObject)
+		return pTempObj
+
+	Func setAmbient P1
+		return QPhongMaterial_setAmbient(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setDiffuse P1
+		return QPhongMaterial_setDiffuse(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setShininess P1
+		return QPhongMaterial_setShininess(pObject,P1)
+
+	Func setSpecular P1
+		return QPhongMaterial_setSpecular(pObject,GetObjectPointerFromRingObject(P1))
+
+Class QForwardRenderer
+
+	pObject
+
+	Func init P1
+		pObject = QForwardRenderer_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QForwardRenderer_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func camera 
+		return QForwardRenderer_camera(pObject)
+
+	Func clearColor 
+		pTempObj = new QColor
+		pTempObj.pObject = QForwardRenderer_clearColor(pObject)
+		return pTempObj
+
+	Func externalRenderTargetSize 
+		pTempObj = new QSize
+		pTempObj.pObject = QForwardRenderer_externalRenderTargetSize(pObject)
+		return pTempObj
+
+	Func gamma 
+		return QForwardRenderer_gamma(pObject)
+
+	Func isFrustumCullingEnabled 
+		return QForwardRenderer_isFrustumCullingEnabled(pObject)
+
+	Func surface 
+		pTempObj = new QObject
+		pTempObj.pObject = QForwardRenderer_surface(pObject)
+		return pTempObj
+
+	Func viewportRect 
+		return QForwardRenderer_viewportRect(pObject)
+
+	Func setCamera P1
+		return QForwardRenderer_setCamera(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setClearColor P1
+		return QForwardRenderer_setClearColor(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setExternalRenderTargetSize P1
+		return QForwardRenderer_setExternalRenderTargetSize(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setFrustumCullingEnabled P1
+		return QForwardRenderer_setFrustumCullingEnabled(pObject,P1)
+
+	Func setGamma P1
+		return QForwardRenderer_setGamma(pObject,P1)
+
+	Func setSurface P1
+		return QForwardRenderer_setSurface(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setViewportRect P1
+		return QForwardRenderer_setViewportRect(pObject,GetObjectPointerFromRingObject(P1))
+
+Class Qt3DWindow from QWindow
+
+	pObject
+
+	Func init 
+		pObject = Qt3DWindow_new()
+		return self
+
+	Func delete
+		pObject = Qt3DWindow_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func activeFrameGraph 
+		return Qt3DWindow_activeFrameGraph(pObject)
+
+	Func defaultFrameGraph 
+		pTempObj = new QForwardRenderer
+		pTempObj.pObject = Qt3DWindow_defaultFrameGraph(pObject)
+		return pTempObj
+
+	Func registerAspect P1
+		return Qt3DWindow_registerAspect(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func registerAspect_2 P1
+		return Qt3DWindow_registerAspect_2(pObject,P1)
+
+	Func renderSettings 
+		return Qt3DWindow_renderSettings(pObject)
+
+	Func setActiveFrameGraph P1
+		return Qt3DWindow_setActiveFrameGraph(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setRootEntity P1
+		return Qt3DWindow_setRootEntity(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func camera 
+		pTempObj = new Qt3DCamera
+		pTempObj.pObject = Qt3DWindow_camera(pObject)
+		return pTempObj
+
+Class QAbstractCameraController from QEntity
+
+	pObject
+
+	Func init P1
+		pObject = QAbstractCameraController_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QAbstractCameraController_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func acceleration 
+		return QAbstractCameraController_acceleration(pObject)
+
+	Func camera 
+		return QAbstractCameraController_camera(pObject)
+
+	Func deceleration 
+		return QAbstractCameraController_deceleration(pObject)
+
+	Func linearSpeed 
+		return QAbstractCameraController_linearSpeed(pObject)
+
+	Func lookSpeed 
+		return QAbstractCameraController_lookSpeed(pObject)
+
+	Func setAcceleration P1
+		return QAbstractCameraController_setAcceleration(pObject,P1)
+
+	Func setCamera P1
+		return QAbstractCameraController_setCamera(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setDeceleration P1
+		return QAbstractCameraController_setDeceleration(pObject,P1)
+
+	Func setLinearSpeed P1
+		return QAbstractCameraController_setLinearSpeed(pObject,P1)
+
+	Func setLookSpeed P1
+		return QAbstractCameraController_setLookSpeed(pObject,P1)
+
+Class QTextureMaterial
+
+	pObject
+
+	Func init P1
+		pObject = QTextureMaterial_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QTextureMaterial_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func isAlphaBlendingEnabled 
+		return QTextureMaterial_isAlphaBlendingEnabled(pObject)
+
+	Func texture 
+		return QTextureMaterial_texture(pObject)
+
+	Func textureOffset 
+		pTempObj = new QVector2D
+		pTempObj.pObject = QTextureMaterial_textureOffset(pObject)
+		return pTempObj
+
+	Func textureTransform 
+		return QTextureMaterial_textureTransform(pObject)
+
+	Func setAlphaBlendingEnabled P1
+		return QTextureMaterial_setAlphaBlendingEnabled(pObject,P1)
+
+	Func setTexture P1
+		return QTextureMaterial_setTexture(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setTextureOffset P1
+		return QTextureMaterial_setTextureOffset(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setTextureTransform P1
+		return QTextureMaterial_setTextureTransform(pObject,GetObjectPointerFromRingObject(P1))
+
+Class QExtrudedTextMesh
+
+	pObject
+
+	Func init P1
+		pObject = QExtrudedTextMesh_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QExtrudedTextMesh_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func depth 
+		return QExtrudedTextMesh_depth(pObject)
+
+	Func font 
+		pTempObj = new QFont
+		pTempObj.pObject = QExtrudedTextMesh_font(pObject)
+		return pTempObj
+
+	Func text 
+		return QExtrudedTextMesh_text(pObject)
+
+	Func setDepth P1
+		return QExtrudedTextMesh_setDepth(pObject,P1)
+
+	Func setFont P1
+		return QExtrudedTextMesh_setFont(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setText P1
+		return QExtrudedTextMesh_setText(pObject,P1)
+
+Class QText2DEntity from QEntity
+
+	pObject
+
+	Func init P1
+		pObject = QText2DEntity_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QText2DEntity_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func color 
+		pTempObj = new QColor
+		pTempObj.pObject = QText2DEntity_color(pObject)
+		return pTempObj
+
+	Func font 
+		pTempObj = new QFont
+		pTempObj.pObject = QText2DEntity_font(pObject)
+		return pTempObj
+
+	Func height 
+		return QText2DEntity_height(pObject)
+
+	Func setColor P1
+		return QText2DEntity_setColor(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setFont P1
+		return QText2DEntity_setFont(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setHeight P1
+		return QText2DEntity_setHeight(pObject,P1)
+
+	Func setText P1
+		return QText2DEntity_setText(pObject,P1)
+
+	Func setWidth P1
+		return QText2DEntity_setWidth(pObject,P1)
+
+	Func text 
+		return QText2DEntity_text(pObject)
+
+	Func width 
+		return QText2DEntity_width(pObject)
+
+Class QSkyboxEntity from QEntity
+
+	pObject
+
+	Func init P1
+		pObject = QSkyboxEntity_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QSkyboxEntity_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func baseName 
+		return QSkyboxEntity_baseName(pObject)
+
+	Func extension 
+		return QSkyboxEntity_extension(pObject)
+
+	Func isGammaCorrectEnabled 
+		return QSkyboxEntity_isGammaCorrectEnabled(pObject)
+
+	Func setBaseName P1
+		return QSkyboxEntity_setBaseName(pObject,P1)
+
+	Func setExtension P1
+		return QSkyboxEntity_setExtension(pObject,P1)
+
+	Func setGammaCorrectEnabled P1
+		return QSkyboxEntity_setGammaCorrectEnabled(pObject,P1)
+
+Class QConeGeometry
+
+	pObject
+
+	Func init P1
+		pObject = QConeGeometry_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QConeGeometry_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func bottomRadius 
+		return QConeGeometry_bottomRadius(pObject)
+
+	Func hasBottomEndcap 
+		return QConeGeometry_hasBottomEndcap(pObject)
+
+	Func hasTopEndcap 
+		return QConeGeometry_hasTopEndcap(pObject)
+
+	Func indexAttribute 
+		return QConeGeometry_indexAttribute(pObject)
+
+	Func length 
+		return QConeGeometry_length(pObject)
+
+	Func normalAttribute 
+		return QConeGeometry_normalAttribute(pObject)
+
+	Func positionAttribute 
+		return QConeGeometry_positionAttribute(pObject)
+
+	Func rings 
+		return QConeGeometry_rings(pObject)
+
+	Func slices 
+		return QConeGeometry_slices(pObject)
+
+	Func texCoordAttribute 
+		return QConeGeometry_texCoordAttribute(pObject)
+
+	Func topRadius 
+		return QConeGeometry_topRadius(pObject)
+
+	Func updateIndices 
+		return QConeGeometry_updateIndices(pObject)
+
+	Func updateVertices 
+		return QConeGeometry_updateVertices(pObject)
+
+	Func setBottomRadius P1
+		return QConeGeometry_setBottomRadius(pObject,P1)
+
+	Func setHasBottomEndcap P1
+		return QConeGeometry_setHasBottomEndcap(pObject,P1)
+
+	Func setHasTopEndcap P1
+		return QConeGeometry_setHasTopEndcap(pObject,P1)
+
+	Func setLength P1
+		return QConeGeometry_setLength(pObject,P1)
+
+	Func setRings P1
+		return QConeGeometry_setRings(pObject,P1)
+
+	Func setSlices P1
+		return QConeGeometry_setSlices(pObject,P1)
+
+	Func setTopRadius P1
+		return QConeGeometry_setTopRadius(pObject,P1)
+
+Class QOrbitCameraController from QAbstractCameraController
+
+	pObject
+
+	Func init P1
+		pObject = QOrbitCameraController_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QOrbitCameraController_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func setZoomInLimit P1
+		return QOrbitCameraController_setZoomInLimit(pObject,P1)
+
+	Func zoomInLimit 
+		return QOrbitCameraController_zoomInLimit(pObject)
+
+Class QDiffuseSpecularMaterial
+
+	pObject
+
+	Func init P1
+		pObject = QDiffuseSpecularMaterial_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QDiffuseSpecularMaterial_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func ambient 
+		pTempObj = new QColor
+		pTempObj.pObject = QDiffuseSpecularMaterial_ambient(pObject)
+		return pTempObj
+
+	Func diffuse 
+		pTempObj = new QVariant
+		pTempObj.pObject = QDiffuseSpecularMaterial_diffuse(pObject)
+		return pTempObj
+
+	Func isAlphaBlendingEnabled 
+		return QDiffuseSpecularMaterial_isAlphaBlendingEnabled(pObject)
+
+	Func normal 
+		pTempObj = new QVariant
+		pTempObj.pObject = QDiffuseSpecularMaterial_normal(pObject)
+		return pTempObj
+
+	Func shininess 
+		return QDiffuseSpecularMaterial_shininess(pObject)
+
+	Func specular 
+		pTempObj = new QVariant
+		pTempObj.pObject = QDiffuseSpecularMaterial_specular(pObject)
+		return pTempObj
+
+	Func textureScale 
+		return QDiffuseSpecularMaterial_textureScale(pObject)
+
+	Func setAlphaBlendingEnabled P1
+		return QDiffuseSpecularMaterial_setAlphaBlendingEnabled(pObject,P1)
+
+	Func setAmbient P1
+		return QDiffuseSpecularMaterial_setAmbient(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setDiffuse P1
+		return QDiffuseSpecularMaterial_setDiffuse(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setNormal P1
+		return QDiffuseSpecularMaterial_setNormal(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setShininess P1
+		return QDiffuseSpecularMaterial_setShininess(pObject,P1)
+
+	Func setSpecular P1
+		return QDiffuseSpecularMaterial_setSpecular(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setTextureScale P1
+		return QDiffuseSpecularMaterial_setTextureScale(pObject,P1)
+
+Class QGoochMaterial
+
+	pObject
+
+	Func init P1
+		pObject = QGoochMaterial_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QGoochMaterial_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func alpha 
+		return QGoochMaterial_alpha(pObject)
+
+	Func beta 
+		return QGoochMaterial_beta(pObject)
+
+	Func cool 
+		pTempObj = new QColor
+		pTempObj.pObject = QGoochMaterial_cool(pObject)
+		return pTempObj
+
+	Func diffuse 
+		pTempObj = new QColor
+		pTempObj.pObject = QGoochMaterial_diffuse(pObject)
+		return pTempObj
+
+	Func shininess 
+		return QGoochMaterial_shininess(pObject)
+
+	Func specular 
+		pTempObj = new QColor
+		pTempObj.pObject = QGoochMaterial_specular(pObject)
+		return pTempObj
+
+	Func warm 
+		pTempObj = new QColor
+		pTempObj.pObject = QGoochMaterial_warm(pObject)
+		return pTempObj
+
+	Func setAlpha P1
+		return QGoochMaterial_setAlpha(pObject,P1)
+
+	Func setBeta P1
+		return QGoochMaterial_setBeta(pObject,P1)
+
+	Func setCool P1
+		return QGoochMaterial_setCool(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setDiffuse P1
+		return QGoochMaterial_setDiffuse(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setShininess P1
+		return QGoochMaterial_setShininess(pObject,P1)
+
+	Func setSpecular P1
+		return QGoochMaterial_setSpecular(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setWarm P1
+		return QGoochMaterial_setWarm(pObject,GetObjectPointerFromRingObject(P1))
+
+Class QMetalRoughMaterial
+
+	pObject
+
+	Func init P1
+		pObject = QMetalRoughMaterial_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QMetalRoughMaterial_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func ambientOcclusion 
+		pTempObj = new QVariant
+		pTempObj.pObject = QMetalRoughMaterial_ambientOcclusion(pObject)
+		return pTempObj
+
+	Func baseColor 
+		pTempObj = new QVariant
+		pTempObj.pObject = QMetalRoughMaterial_baseColor(pObject)
+		return pTempObj
+
+	Func metalness 
+		pTempObj = new QVariant
+		pTempObj.pObject = QMetalRoughMaterial_metalness(pObject)
+		return pTempObj
+
+	Func normal 
+		pTempObj = new QVariant
+		pTempObj.pObject = QMetalRoughMaterial_normal(pObject)
+		return pTempObj
+
+	Func roughness 
+		pTempObj = new QVariant
+		pTempObj.pObject = QMetalRoughMaterial_roughness(pObject)
+		return pTempObj
+
+	Func textureScale 
+		return QMetalRoughMaterial_textureScale(pObject)
+
+	Func setAmbientOcclusion P1
+		return QMetalRoughMaterial_setAmbientOcclusion(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setBaseColor P1
+		return QMetalRoughMaterial_setBaseColor(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setMetalness P1
+		return QMetalRoughMaterial_setMetalness(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setNormal P1
+		return QMetalRoughMaterial_setNormal(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setRoughness P1
+		return QMetalRoughMaterial_setRoughness(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setTextureScale P1
+		return QMetalRoughMaterial_setTextureScale(pObject,P1)
+
+Class QMorphPhongMaterial
+
+	pObject
+
+	Func init P1
+		pObject = QMorphPhongMaterial_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QMorphPhongMaterial_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func ambient 
+		pTempObj = new QColor
+		pTempObj.pObject = QMorphPhongMaterial_ambient(pObject)
+		return pTempObj
+
+	Func diffuse 
+		pTempObj = new QColor
+		pTempObj.pObject = QMorphPhongMaterial_diffuse(pObject)
+		return pTempObj
+
+	Func interpolator 
+		return QMorphPhongMaterial_interpolator(pObject)
+
+	Func shininess 
+		return QMorphPhongMaterial_shininess(pObject)
+
+	Func specular 
+		pTempObj = new QColor
+		pTempObj.pObject = QMorphPhongMaterial_specular(pObject)
+		return pTempObj
+
+	Func setAmbient P1
+		return QMorphPhongMaterial_setAmbient(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setDiffuse P1
+		return QMorphPhongMaterial_setDiffuse(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setInterpolator P1
+		return QMorphPhongMaterial_setInterpolator(pObject,P1)
+
+	Func setShininess P1
+		return QMorphPhongMaterial_setShininess(pObject,P1)
+
+	Func setSpecular P1
+		return QMorphPhongMaterial_setSpecular(pObject,GetObjectPointerFromRingObject(P1))
+
+Class Qt3DCamera from QEntity
+
+	pObject
+
+	Func init P1
+		pObject = Qt3DCamera_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = Qt3DCamera_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func aspectRatio 
+		return Qt3DCamera_aspectRatio(pObject)
+
+	Func bottom 
+		return Qt3DCamera_bottom(pObject)
+
+	Func exposure 
+		return Qt3DCamera_exposure(pObject)
+
+	Func farPlane 
+		return Qt3DCamera_farPlane(pObject)
+
+	Func fieldOfView 
+		return Qt3DCamera_fieldOfView(pObject)
+
+	Func left 
+		return Qt3DCamera_left(pObject)
+
+	Func lens 
+		pTempObj = new QCameraLens
+		pTempObj.pObject = Qt3DCamera_lens(pObject)
+		return pTempObj
+
+	Func nearPlane 
+		return Qt3DCamera_nearPlane(pObject)
+
+	Func pan P1
+		return Qt3DCamera_pan(pObject,P1)
+
+	Func pan_2 P1,P2
+		return Qt3DCamera_pan_2(pObject,P1,GetObjectPointerFromRingObject(P2))
+
+	Func panAboutViewCenter P1
+		return Qt3DCamera_panAboutViewCenter(pObject,P1)
+
+	Func panAboutViewCenter_2 P1,P2
+		return Qt3DCamera_panAboutViewCenter_2(pObject,P1,GetObjectPointerFromRingObject(P2))
+
+	Func panRotation P1
+		pTempObj = new QQuaternion
+		pTempObj.pObject = Qt3DCamera_panRotation(pObject,P1)
+		return pTempObj
+
+	Func position 
+		pTempObj = new QVector3D
+		pTempObj.pObject = Qt3DCamera_position(pObject)
+		return pTempObj
+
+	Func projectionMatrix 
+		pTempObj = new QMatrix4x4
+		pTempObj.pObject = Qt3DCamera_projectionMatrix(pObject)
+		return pTempObj
+
+	Func projectionType 
+		return Qt3DCamera_projectionType(pObject)
+
+	Func right 
+		return Qt3DCamera_right(pObject)
+
+	Func roll P1
+		return Qt3DCamera_roll(pObject,P1)
+
+	Func rollAboutViewCenter P1
+		return Qt3DCamera_rollAboutViewCenter(pObject,P1)
+
+	Func rollRotation P1
+		pTempObj = new QQuaternion
+		pTempObj.pObject = Qt3DCamera_rollRotation(pObject,P1)
+		return pTempObj
+
+	Func rotate P1
+		return Qt3DCamera_rotate(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func rotateAboutViewCenter P1
+		return Qt3DCamera_rotateAboutViewCenter(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func rotation P1,P2
+		pTempObj = new QQuaternion
+		pTempObj.pObject = Qt3DCamera_rotation(pObject,P1,GetObjectPointerFromRingObject(P2))
+		return pTempObj
+
+	Func tilt P1
+		return Qt3DCamera_tilt(pObject,P1)
+
+	Func tiltAboutViewCenter P1
+		return Qt3DCamera_tiltAboutViewCenter(pObject,P1)
+
+	Func tiltRotation P1
+		pTempObj = new QQuaternion
+		pTempObj.pObject = Qt3DCamera_tiltRotation(pObject,P1)
+		return pTempObj
+
+	Func top 
+		return Qt3DCamera_top(pObject)
+
+	Func transform 
+		return Qt3DCamera_transform(pObject)
+
+	Func translate P1,P2
+		return Qt3DCamera_translate(pObject,GetObjectPointerFromRingObject(P1),P2)
+
+	Func translateWorld P1,P2
+		return Qt3DCamera_translateWorld(pObject,GetObjectPointerFromRingObject(P1),P2)
+
+	Func upVector 
+		pTempObj = new QVector3D
+		pTempObj.pObject = Qt3DCamera_upVector(pObject)
+		return pTempObj
+
+	Func viewCenter 
+		pTempObj = new QVector3D
+		pTempObj.pObject = Qt3DCamera_viewCenter(pObject)
+		return pTempObj
+
+	Func viewVector 
+		pTempObj = new QVector3D
+		pTempObj.pObject = Qt3DCamera_viewVector(pObject)
+		return pTempObj
+
+	Func setAspectRatio P1
+		return Qt3DCamera_setAspectRatio(pObject,P1)
+
+	Func setBottom P1
+		return Qt3DCamera_setBottom(pObject,P1)
+
+	Func setExposure P1
+		return Qt3DCamera_setExposure(pObject,P1)
+
+	Func setFarPlane P1
+		return Qt3DCamera_setFarPlane(pObject,P1)
+
+	Func setFieldOfView P1
+		return Qt3DCamera_setFieldOfView(pObject,P1)
+
+	Func setLeft P1
+		return Qt3DCamera_setLeft(pObject,P1)
+
+	Func setNearPlane P1
+		return Qt3DCamera_setNearPlane(pObject,P1)
+
+	Func setPosition P1
+		return Qt3DCamera_setPosition(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setProjectionMatrix P1
+		return Qt3DCamera_setProjectionMatrix(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setProjectionType P1
+		return Qt3DCamera_setProjectionType(pObject,P1)
+
+	Func setRight P1
+		return Qt3DCamera_setRight(pObject,P1)
+
+	Func setTop P1
+		return Qt3DCamera_setTop(pObject,P1)
+
+	Func setUpVector P1
+		return Qt3DCamera_setUpVector(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setViewCenter P1
+		return Qt3DCamera_setViewCenter(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func viewAll 
+		return Qt3DCamera_viewAll(pObject)
+
+	Func viewEntity P1
+		return Qt3DCamera_viewEntity(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func viewSphere P1,P2
+		return Qt3DCamera_viewSphere(pObject,GetObjectPointerFromRingObject(P1),P2)
+
+Class QCameraLens
+
+	pObject
+
+	Func init P1
+		pObject = QCameraLens_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QCameraLens_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func aspectRatio 
+		return QCameraLens_aspectRatio(pObject)
+
+	Func bottom 
+		return QCameraLens_bottom(pObject)
+
+	Func exposure 
+		return QCameraLens_exposure(pObject)
+
+	Func farPlane 
+		return QCameraLens_farPlane(pObject)
+
+	Func fieldOfView 
+		return QCameraLens_fieldOfView(pObject)
+
+	Func left 
+		return QCameraLens_left(pObject)
+
+	Func nearPlane 
+		return QCameraLens_nearPlane(pObject)
+
+	Func projectionMatrix 
+		pTempObj = new QMatrix4x4
+		pTempObj.pObject = QCameraLens_projectionMatrix(pObject)
+		return pTempObj
+
+	Func projectionType 
+		return QCameraLens_projectionType(pObject)
+
+	Func right 
+		return QCameraLens_right(pObject)
+
+	Func setFrustumProjection P1,P2,P3,P4,P5,P6
+		return QCameraLens_setFrustumProjection(pObject,P1,P2,P3,P4,P5,P6)
+
+	Func setOrthographicProjection P1,P2,P3,P4,P5,P6
+		return QCameraLens_setOrthographicProjection(pObject,P1,P2,P3,P4,P5,P6)
+
+	Func setPerspectiveProjection P1,P2,P3,P4
+		return QCameraLens_setPerspectiveProjection(pObject,P1,P2,P3,P4)
+
+	Func top 
+		return QCameraLens_top(pObject)
+
+	Func setAspectRatio P1
+		return QCameraLens_setAspectRatio(pObject,P1)
+
+	Func setBottom P1
+		return QCameraLens_setBottom(pObject,P1)
+
+	Func setExposure P1
+		return QCameraLens_setExposure(pObject,P1)
+
+	Func setFarPlane P1
+		return QCameraLens_setFarPlane(pObject,P1)
+
+	Func setFieldOfView P1
+		return QCameraLens_setFieldOfView(pObject,P1)
+
+	Func setLeft P1
+		return QCameraLens_setLeft(pObject,P1)
+
+	Func setNearPlane P1
+		return QCameraLens_setNearPlane(pObject,P1)
+
+	Func setProjectionMatrix P1
+		return QCameraLens_setProjectionMatrix(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setProjectionType P1
+		return QCameraLens_setProjectionType(pObject,P1)
+
+	Func setRight P1
+		return QCameraLens_setRight(pObject,P1)
+
+	Func setTop P1
+		return QCameraLens_setTop(pObject,P1)
+
+Class QMesh
+
+	pObject
+
+	Func init P1
+		pObject = QMesh_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QMesh_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func meshName 
+		return QMesh_meshName(pObject)
+
+	Func source 
+		pTempObj = new QUrl
+		pTempObj.pObject = QMesh_source(pObject)
+		return pTempObj
+
+	Func status 
+		return QMesh_status(pObject)
+
+	Func setMeshName P1
+		return QMesh_setMeshName(pObject,P1)
+
+	Func setSource P1
+		return QMesh_setSource(pObject,GetObjectPointerFromRingObject(P1))
+
+Class QTechnique
+
+	pObject
+
+	Func init P1
+		pObject = QTechnique_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QTechnique_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func addFilterKey P1
+		return QTechnique_addFilterKey(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func addParameter P1
+		return QTechnique_addParameter(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func addRenderPass P1
+		return QTechnique_addRenderPass(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func filterKeys 
+		return QTechnique_filterKeys(pObject)
+
+	Func graphicsApiFilter 
+		return QTechnique_graphicsApiFilter(pObject)
+
+	Func parameters 
+		return QTechnique_parameters(pObject)
+
+	Func removeFilterKey P1
+		return QTechnique_removeFilterKey(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func removeParameter P1
+		return QTechnique_removeParameter(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func removeRenderPass P1
+		return QTechnique_removeRenderPass(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func renderPasses 
+		return QTechnique_renderPasses(pObject)
+
+Class QMaterial from Qt3DCore::QComponent
+
+	pObject
+
+	Func init P1
+		pObject = QMaterial_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QMaterial_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func addParameter P1
+		return QMaterial_addParameter(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func effect 
+		return QMaterial_effect(pObject)
+
+	Func parameters 
+		return QMaterial_parameters(pObject)
+
+	Func removeParameter P1
+		return QMaterial_removeParameter(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setEffect P1
+		return QMaterial_setEffect(pObject,GetObjectPointerFromRingObject(P1))
+
+Class QEffect
+
+	pObject
+
+	Func init P1
+		pObject = QEffect_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QEffect_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func addParameter P1
+		return QEffect_addParameter(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func addTechnique P1
+		return QEffect_addTechnique(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func parameters 
+		return QEffect_parameters(pObject)
+
+	Func removeParameter P1
+		return QEffect_removeParameter(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func removeTechnique P1
+		return QEffect_removeTechnique(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func techniques 
+		return QEffect_techniques(pObject)
+
+Class QRenderPass
+
+	pObject
+
+	Func init P1
+		pObject = QRenderPass_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QRenderPass_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func addFilterKey P1
+		return QRenderPass_addFilterKey(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func addParameter P1
+		return QRenderPass_addParameter(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func addRenderState P1
+		return QRenderPass_addRenderState(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func filterKeys 
+		return QRenderPass_filterKeys(pObject)
+
+	Func parameters 
+		return QRenderPass_parameters(pObject)
+
+	Func removeFilterKey P1
+		return QRenderPass_removeFilterKey(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func removeParameter P1
+		return QRenderPass_removeParameter(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func removeRenderState P1
+		return QRenderPass_removeRenderState(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func renderStates 
+		return QRenderPass_renderStates(pObject)
+
+	Func shaderProgram 
+		return QRenderPass_shaderProgram(pObject)
+
+	Func setShaderProgram P1
+		return QRenderPass_setShaderProgram(pObject,GetObjectPointerFromRingObject(P1))
+
+Class QSceneLoader from QComponent
+
+	pObject
+
+	Func init P1
+		pObject = QSceneLoader_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QSceneLoader_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func component P1,P2
+		return QSceneLoader_component(pObject,P1,GetObjectPointerFromRingObject(P2))
+
+	Func entity P1
+		return QSceneLoader_entity(pObject,P1)
+
+	Func entityNames 
+		pTempObj = new QStringList
+		pTempObj.pObject = QSceneLoader_entityNames(pObject)
+		return pTempObj
+
+	Func source 
+		pTempObj = new QUrl
+		pTempObj.pObject = QSceneLoader_source(pObject)
+		return pTempObj
+
+	Func status 
+		return QSceneLoader_status(pObject)
+
+	Func setSource P1
+		return QSceneLoader_setSource(pObject,GetObjectPointerFromRingObject(P1))
+
+Class QPointLight
+
+	pObject
+
+	Func init P1
+		pObject = QPointLight_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QPointLight_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func constantAttenuation 
+		return QPointLight_constantAttenuation(pObject)
+
+	Func linearAttenuation 
+		return QPointLight_linearAttenuation(pObject)
+
+	Func quadraticAttenuation 
+		return QPointLight_quadraticAttenuation(pObject)
+
+	Func setConstantAttenuation P1
+		return QPointLight_setConstantAttenuation(pObject,P1)
+
+	Func setLinearAttenuation P1
+		return QPointLight_setLinearAttenuation(pObject,P1)
+
+	Func setQuadraticAttenuation P1
+		return QPointLight_setQuadraticAttenuation(pObject,P1)
+
+	Func setColor P1
+		return QPointLight_setColor(pObject,GetObjectPointerFromRingObject(P1))
+
+	Func setIntensity P1
+		return QPointLight_setIntensity(pObject,P1)
+
+Class QTextureLoader
+
+	pObject
+
+	Func init P1
+		pObject = QTextureLoader_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QTextureLoader_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func isMirrored 
+		return QTextureLoader_isMirrored(pObject)
+
+	Func source 
+		pTempObj = new QUrl
+		pTempObj.pObject = QTextureLoader_source(pObject)
+		return pTempObj
+
+	Func setMirrored P1
+		return QTextureLoader_setMirrored(pObject,P1)
+
+	Func setSource P1
+		return QTextureLoader_setSource(pObject,GetObjectPointerFromRingObject(P1))
+
+Class QObjectPicker
+
+	pObject
+
+	Func init P1
+		pObject = QObjectPicker_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QObjectPicker_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func containsMouse 
+		return QObjectPicker_containsMouse(pObject)
+
+	Func isDragEnabled 
+		return QObjectPicker_isDragEnabled(pObject)
+
+	Func isHoverEnabled 
+		return QObjectPicker_isHoverEnabled(pObject)
+
+	Func isPressed 
+		return QObjectPicker_isPressed(pObject)
+
+	Func setDragEnabled P1
+		return QObjectPicker_setDragEnabled(pObject,P1)
+
+	Func setHoverEnabled P1
+		return QObjectPicker_setHoverEnabled(pObject,P1)
+
+	Func setclickedEvent P1
+		return QObjectPicker_setclickedEvent(pObject,P1)
+
+	Func setcontainsMouseChangedEvent P1
+		return QObjectPicker_setcontainsMouseChangedEvent(pObject,P1)
+
+	Func setdragEnabledChangedEvent P1
+		return QObjectPicker_setdragEnabledChangedEvent(pObject,P1)
+
+	Func setenteredEvent P1
+		return QObjectPicker_setenteredEvent(pObject,P1)
+
+	Func setexitedEvent P1
+		return QObjectPicker_setexitedEvent(pObject,P1)
+
+	Func sethoverEnabledChangedEvent P1
+		return QObjectPicker_sethoverEnabledChangedEvent(pObject,P1)
+
+	Func setmovedEvent P1
+		return QObjectPicker_setmovedEvent(pObject,P1)
+
+	Func setpressedEvent P1
+		return QObjectPicker_setpressedEvent(pObject,P1)
+
+	Func setpressedChangedEvent P1
+		return QObjectPicker_setpressedChangedEvent(pObject,P1)
+
+	Func setreleasedEvent P1
+		return QObjectPicker_setreleasedEvent(pObject,P1)
+
+	Func getclickedEvent 
+		return QObjectPicker_getclickedEvent(pObject)
+
+	Func getcontainsMouseChangedEvent 
+		return QObjectPicker_getcontainsMouseChangedEvent(pObject)
+
+	Func getdragEnabledChangedEvent 
+		return QObjectPicker_getdragEnabledChangedEvent(pObject)
+
+	Func getenteredEvent 
+		return QObjectPicker_getenteredEvent(pObject)
+
+	Func getexitedEvent 
+		return QObjectPicker_getexitedEvent(pObject)
+
+	Func gethoverEnabledChangedEvent 
+		return QObjectPicker_gethoverEnabledChangedEvent(pObject)
+
+	Func getmovedEvent 
+		return QObjectPicker_getmovedEvent(pObject)
+
+	Func getpressedEvent 
+		return QObjectPicker_getpressedEvent(pObject)
+
+	Func getpressedChangedEvent 
+		return QObjectPicker_getpressedChangedEvent(pObject)
+
+	Func getreleasedEvent 
+		return QObjectPicker_getreleasedEvent(pObject)
+
+Class QCameraSelector
+
+	pObject
+
+	Func init P1
+		pObject = QCameraSelector_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QCameraSelector_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func camera 
+		return QCameraSelector_camera(pObject)
+
+	Func setCamera P1
+		return QCameraSelector_setCamera(pObject,GetObjectPointerFromRingObject(P1))
+
+Class QCullFace
+
+	pObject
+
+	Func init P1
+		pObject = QCullFace_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QCullFace_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func mode 
+		return QCullFace_mode(pObject)
+
+	Func setMode P1
+		return QCullFace_setMode(pObject,P1)
+
+Class QDepthTest
+
+	pObject
+
+	Func init P1
+		pObject = QDepthTest_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QDepthTest_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func depthFunction 
+		return QDepthTest_depthFunction(pObject)
+
+	Func setDepthFunction P1
+		return QDepthTest_setDepthFunction(pObject,P1)
+
+Class QViewport
+
+	pObject
+
+	Func init P1
+		pObject = QViewport_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QViewport_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func gamma 
+		return QViewport_gamma(pObject)
+
+	Func normalizedRect 
+		return QViewport_normalizedRect(pObject)
+
+	Func setGamma P1
+		return QViewport_setGamma(pObject,P1)
+
+	Func setNormalizedRect P1
+		return QViewport_setNormalizedRect(pObject,GetObjectPointerFromRingObject(P1))
+
+Class QInputAspect
+
+	pObject
+
+	Func init P1
+		pObject = QInputAspect_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QInputAspect_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func availablePhysicalDevices 
+		pTempObj = new QStringList
+		pTempObj.pObject = QInputAspect_availablePhysicalDevices(pObject)
+		return pTempObj
+
+	Func createPhysicalDevice P1
+		return QInputAspect_createPhysicalDevice(pObject,P1)
+
+Class QFrameAction
+
+	pObject
+
+	Func init P1
+		pObject = QFrameAction_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QFrameAction_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+	Func settriggeredEvent P1
+		return QFrameAction_settriggeredEvent(pObject,P1)
+
+	Func gettriggeredEvent 
+		return QFrameAction_gettriggeredEvent(pObject)
 
 Class QSize
 
@@ -24133,6 +26593,62 @@ Class QVariant5 from QVariant
 
 	Func delete
 		pObject = QVariant5_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+Class QVariantInt from QVariant
+
+	pObject
+
+	Func init P1
+		pObject = QVariantInt_new(P1)
+		return self
+
+	Func delete
+		pObject = QVariantInt_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+Class QVariantFloat from QVariant
+
+	pObject
+
+	Func init P1
+		pObject = QVariantFloat_new(P1)
+		return self
+
+	Func delete
+		pObject = QVariantFloat_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+Class QVariantDouble from QVariant
+
+	pObject
+
+	Func init P1
+		pObject = QVariantDouble_new(P1)
+		return self
+
+	Func delete
+		pObject = QVariantDouble_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+Class QVariantString from QVariant
+
+	pObject
+
+	Func init P1
+		pObject = QVariantString_new(P1)
+		return self
+
+	Func delete
+		pObject = QVariantString_delete(pObject)
 
 	Func ObjectPointer
 		return pObject
@@ -24385,6 +26901,90 @@ Class QCameraViewfinder from QVideoWidget
 
 	Func delete
 		pObject = QCameraViewfinder_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+Class QWebView from QWebEngineView
+
+	pObject
+
+	Func init P1
+		pObject = QWebView_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QWebView_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+Class QAxWidget2 from QAxWidget
+
+	pObject
+
+	Func init P1,P2,P3
+		pObject = QAxWidget2_new(P1,GetObjectPointerFromRingObject(P2),P3)
+		return self
+
+	Func delete
+		pObject = QAxWidget2_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+Class QFirstPersonCameraController from QAbstractCameraController
+
+	pObject
+
+	Func init P1
+		pObject = QFirstPersonCameraController_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QFirstPersonCameraController_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+Class QPerVertexColorMaterial
+
+	pObject
+
+	Func init P1
+		pObject = QPerVertexColorMaterial_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QPerVertexColorMaterial_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+Class QRenderAspect
+
+	pObject
+
+	Func init P1
+		pObject = QRenderAspect_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QRenderAspect_delete(pObject)
+
+	Func ObjectPointer
+		return pObject
+
+Class QLogicAspect from Qt3DCore::QAbstractAspect
+
+	pObject
+
+	Func init P1
+		pObject = QLogicAspect_new(GetObjectPointerFromRingObject(P1))
+		return self
+
+	Func delete
+		pObject = QLogicAspect_delete(pObject)
 
 	Func ObjectPointer
 		return pObject
