@@ -5,15 +5,10 @@
 **	Author :  Mahmoud Fayed <msfclipper@yahoo.com>
 */
 
-class WindowsControllerParent from WindowsControllerBase
+# Load the General Objects Library 
+	load "objectslib.ring"
 
-	func Start		
-		oView.win.Show()
+class WindowsViewParent from ObjectsParent
 
-	func CloseAction
-		oView.Close()
-		Super.Close()
-
-class WindowsViewParent from ObjectsLibParent
 	func Close
 		win.close()
