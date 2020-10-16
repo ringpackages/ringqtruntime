@@ -1,1 +1,0 @@
-load "/../../libraries/guilib/guilib.ring"
